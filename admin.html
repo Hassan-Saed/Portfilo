@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #020617;
+            --bg-secondary: #0f172a;
+            --accent: #38bdf8;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-secondary);
+            padding: 3rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        h1, h2 { font-family: 'Outfit', sans-serif; margin-bottom: 1rem; color: var(--accent); }
+        p { color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6; }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.2);
+            color: white;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        button {
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            width: 100%;
+        }
+        button:hover { opacity: 0.9; }
+
+        .output-box {
+            margin-top: 3rem;
+            background: #000;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        pre {
+            color: #a5b4fc;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-size: 0.9rem;
+        }
+        .info {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Control Panel</h1>
+        
+        <div class="info">
+            <strong>Note on Projects:</strong> Your GitHub projects update automatically! You don't need to add them here. Just create a public repo on GitHub and it will appear on your site.
+        </div>
+
+        <h2>Add New Certification</h2>
+        <p>Fill out this form when you have uploaded a new PDF into your <code>Certifications</code> folder. This will generate the code to paste into your <code>data.js</code> file.</p>
+        
+        <div class="form-group">
+            <label for="certTitle">Certification Title (e.g., React Mastery)</label>
+            <input type="text" id="certTitle" placeholder="Enter title...">
+        </div>
+        
+        <div class="form-group">
+            <label for="certFile">Filename (e.g., react-mastery.pdf)</label>
+            <input type="text" id="certFile" placeholder="Enter exactly as it is named in your folder...">
+        </div>
+
+        <div class="form-group">
+            <label for="certIcon">Emoji Icon (optional)</label>
+            <input type="text" id="certIcon" placeholder="e.g., 🎓" value="🎓">
+        </div>
+
+        <button onclick="generateData()">Generate Updated data.js Code</button>
+
+        <div class="output-box" id="outputBox" style="display: none;">
+            <h3>Copy this code and paste it into your <code>data.js</code> file, completely replacing the old content:</h3>
+            <br>
+            <pre id="codeOutput"></pre>
+        </div>
+    </div>
+
+    <!-- Load existing data so we can append to it -->
+    <script src="data.js"></script>
+    <script>
+        function generateData() {
+            const title = document.getElementById('certTitle').value.trim();
+            const filename = document.getElementById('certFile').value.trim();
+            const icon = document.getElementById('certIcon').value.trim() || '📄';
+
+            if(!title || !filename) {
+                alert("Please fill in both the title and filename.");
+                return;
+            }
+
+            // myCertifications is loaded from data.js globally
+            const currentData = typeof myCertifications !== 'undefined' ? myCertifications : [];
+            
+            const newItem = {
+                title: title,
+                file: "Certifications/" + filename,
+                icon: icon
+            };
+
+            // Create a copy to prevent mutation issues if run multiple times
+            const updatedData = [...currentData, newItem];
+
+            let jsString = "// data.js\n";
+            jsString += "// This file stores your static data.\n";
+            jsString += "// You can use the secret admin.html page to easily generate new entries for this file.\n\n";
+            jsString += "const myCertifications = " + JSON.stringify(updatedData, null, 4) + ";\n";
+
+            document.getElementById('codeOutput').textContent = jsString;
+            document.getElementById('outputBox').style.display = 'block';
+            
+            // Scroll to output
+            document.getElementById('outputBox').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

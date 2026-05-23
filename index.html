@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hassan Saed | Software Developer</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portfolio of Hassan Saed, a Software Developer and student at BATU. Explore my GitHub projects and certifications.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Animation Elements -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Hassan<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero">
+        <div class="hero-container">
+            <div class="hero-content fade-in">
+                <p class="greeting">Hi, I'm</p>
+                <h1>Hassan Saed</h1>
+                <h2>Software Developer</h2>
+                <p class="bio">
+                    Student at BATU (IT Department) with a passion for creating beautiful, dynamic, and high-performance digital experiences.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="https://github.com/Hassan-Saed" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                        GitHub Profile
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper fade-in delay-1">
+                <div class="image-glow"></div>
+                <img src="photos/MyPhoto.png" alt="Hassan Saed" class="hero-image">
+            </div>
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <h2>Featured Projects</h2>
+                <p>Dynamically loaded from my latest GitHub activity.</p>
+            </div>
+            <div id="projects-grid" class="grid">
+                <!-- Project cards will be injected here via JS -->
+                <div class="loader">Loading projects from GitHub...</div>
+            </div>
+            <div class="view-more-container fade-in">
+                <a href="https://github.com/Hassan-Saed?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-outline">View All on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <h2>Certifications</h2>
+                <p>Professional skills and continuous learning.</p>
+            </div>
+            <div id="cert-grid" class="grid">
+                <!-- Cert cards will be injected here via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <h2>Hassan Saed</h2>
+            <div class="social-links">
+                <a href="https://github.com/Hassan-Saed" target="_blank" aria-label="GitHub Profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Hassan Saed. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Data and Scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
